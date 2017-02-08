@@ -15,3 +15,5 @@ Setup your environment variables using the `.env.example.yml` template and save 
 ```
 sls deploy -s STAGE -r REGION
 ```
+
+Profit.
