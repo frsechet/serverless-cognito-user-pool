@@ -1,0 +1,131 @@
+service: cognito-user-pool
+
+custom: ${file(.env-${opt:stage}.yml)}
+
+package:
+  exclude:
+    - node_modules/aws-sdk/**
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: dev
+  region: eu-west-1
+  profile: ${self:custom.DEPLOY_PROFILE}
+  environment:
+    USER_POOL_ID: ${self:custom.USER_POOL_ID}
+    USER_POOL_CLIENT_ID: ${self:custom.USER_POOL_CLIENT_ID}
+    PARANOIA_LEVEL: ${self:custom.PARANOIA_LEVEL}
+
+functions:
+  signup:
+    handler: handler.signup
+    events:
+      - http:
+          path: signup
+          method: post
+          integration: lambda
+
+  signup-confirm:
+    handler: handler.signupConfirm
+    events:
+      - http:
+          path: signup/confirm
+          method: post
+          integration: lambda
+
+  signup-resend:
+    handler: handler.signupResend
+    events:
+      - http:
+          path: signup/resend
+          method: post
+          integration: lambda
+
+  login:
+    handler: handler.login
+    events:
+      - http:
+          path: login
+          method: post
+          integration: lambda
+
+  login-mfa:
+    handler: handler.loginMfa
+    events:
+      - http:
+          path: login/verify
+          method: post
+          integration: lambda
+
+  login-password-reset-required:
+    handler: handler.loginNewPasswordRequired
+    events:
+      - http:
+          path: login/new-password
+          method: post
+          integration: lambda
+
+  logout-force:
+    handler: handler.logout
+    events:
+      - http:
+          path: logout
+          method: post
+          integration: lambda
+
+  password-change:
+    handler: handler.passwordChange
+    events:
+      - http:
+          path: password/change
+          method: post
+          integration: lambda
+
+  password-forgot:
+    handler: handler.passwordForgot
+    events:
+      - http:
+          path: password/forgot
+          method: post
+          integration: lambda
+
+  password-reset:
+    handler: handler.passwordReset
+    events:
+      - http:
+          path: password/reset
+          method: post
+          integration: lambda
+
+  profile-retrieve:
+    handler: handler.profileRetrieve
+    events:
+      - http:
+          path: profile
+          method: post
+          integration: lambda
+
+  profile-edit:
+    handler: handler.profileEdit
+    events:
+      - http:
+          path: profile/edit
+          method: post
+          integration: lambda
+
+  profile-phone:
+    handler: handler.profileEditPhoneNumber
+    events:
+      - http:
+          path: profile/edit/phone
+          method: post
+          integration: lambda
+
+  mfa-status:
+    handler: handler.mfaStatus
+    events:
+      - http:
+          path: profile/mfa
+          method: post
+          integration: lambda
