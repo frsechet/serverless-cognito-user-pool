@@ -13,6 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cognito-user-pool": "^0.1.5"
+    "cognito-user-pool": "^0.1.6"
   }
 }

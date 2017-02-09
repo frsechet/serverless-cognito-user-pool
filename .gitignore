@@ -3,6 +3,7 @@
 !.env.example
 setup_helpers
 event.json
+tmp
 
 # Created by .ignore support plugin (hsz.mobi)
 ### macOS template
