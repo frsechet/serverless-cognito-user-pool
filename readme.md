@@ -1,6 +1,6 @@
-A simple to use serverless starter project to manage your cognito user pools with the serverless framework and https://www.npmjs.com/package/cognito-user-pool.
+A simple to use serverless starter project to manage your cognito user pools with the serverless framework and https://www.npmjs.com/package/cognito-user-pool on AWS Lambda.
 
-Requires tested with serverless v1.4+, but should work with versions starting at 1.0.
+Tested with serverless v1.4+, but should work with versions starting at 1.0.
 
 # Instructions
 
