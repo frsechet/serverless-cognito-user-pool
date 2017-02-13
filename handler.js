@@ -5,7 +5,7 @@ const poolData = {
   ClientId : process.env.USER_POOL_CLIENT_ID,
   Paranoia : process.env.PARANOIA_LEVEL
 };
-let CognitoUserPoolWrapper = require('./tmp')(poolData);
+let CognitoUserPoolWrapper = require('cognito-user-pool')(poolData);
 
 const Success = require("./helpers").success;
 const CustomError = require("./helpers").error;
