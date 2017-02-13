@@ -98,6 +98,14 @@ functions:
           method: post
           integration: lambda
 
+  refresh-token:
+    handler: handler.refreshToken
+    events:
+      - http:
+          path: refresh
+          method: post
+          integration: lambda
+
   profile-retrieve:
     handler: handler.profileRetrieve
     events:

@@ -5,7 +5,7 @@ const poolData = {
   ClientId : process.env.USER_POOL_CLIENT_ID,
   Paranoia : process.env.PARANOIA_LEVEL
 };
-let CognitoUserPoolWrapper = require('./lib')(poolData);
+let CognitoUserPoolWrapper = require('./tmp')(poolData);
 
 const Success = require("./helpers").success;
 const CustomError = require("./helpers").error;
@@ -81,6 +81,13 @@ module.exports = {
     });
   },
 
+  refreshToken: (event, context, cb) => {
+    const body = (typeof event.body === "string") ? JSON.parse(event.body) : event.body ;
+    return CognitoUserPoolWrapper.refreshToken(body, (err, res) => {
+      return (err) ? cb(CustomError(err)) : cb(null, Success(res));
+    });
+  },
+
   profileEdit: (event, context, cb) => {
     const body = (typeof event.body === "string") ? JSON.parse(event.body) : event.body ;
     return CognitoUserPoolWrapper.profileEdit(body, (err, res) => {
@@ -100,6 +107,6 @@ module.exports = {
     return CognitoUserPoolWrapper.mfa(body, (err, res) => {
       return (err) ? cb(CustomError(err)) : cb(null, Success(res));
     });
-  }
+  },
 
 };
