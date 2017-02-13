@@ -98,8 +98,8 @@ functions:
           method: post
           integration: lambda
 
-  refresh-token:
-    handler: handler.refreshToken
+  refresh-session:
+    handler: handler.refreshSession
     events:
       - http:
           path: refresh

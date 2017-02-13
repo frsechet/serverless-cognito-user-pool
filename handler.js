@@ -81,9 +81,9 @@ module.exports = {
     });
   },
 
-  refreshToken: (event, context, cb) => {
+  refreshSession: (event, context, cb) => {
     const body = (typeof event.body === "string") ? JSON.parse(event.body) : event.body ;
-    return CognitoUserPoolWrapper.refreshToken(body, (err, res) => {
+    return CognitoUserPoolWrapper.refreshSession(body, (err, res) => {
       return (err) ? cb(CustomError(err)) : cb(null, Success(res));
     });
   },
