@@ -58,7 +58,7 @@ functions:
           method: post
           integration: lambda
 
-  login-password-reset-required:
+  login-new-password-required:
     handler: handler.loginNewPasswordRequired
     events:
       - http:
