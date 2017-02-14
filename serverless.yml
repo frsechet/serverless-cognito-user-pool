@@ -130,10 +130,18 @@ functions:
           method: post
           integration: lambda
 
-  mfa-status:
-    handler: handler.mfaStatus
+  mfa-set:
+    handler: handler.setMfa
     events:
       - http:
-          path: profile/mfa
+          path: profile/mfa/set
+          method: post
+          integration: lambda
+
+  mfa-get:
+    handler: handler.getMfa
+    events:
+      - http:
+          path: profile/mfa/get
           method: post
           integration: lambda

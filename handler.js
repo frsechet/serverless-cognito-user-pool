@@ -53,6 +53,13 @@ module.exports = {
     });
   },
 
+  logout: (event, context, cb) => {
+    const body = (typeof event.body === "string") ? JSON.parse(event.body) : event.body ;
+    return CognitoUserPoolWrapper.logout(body, (err, res) => {
+      return (err) ? cb(CustomError(err)) : cb(null, Success(res));
+    });
+  },
+
   passwordForgot: (event, context, cb) => {
     const body = (typeof event.body === "string") ? JSON.parse(event.body) : event.body ;
     return CognitoUserPoolWrapper.passwordForgot(body, (err, res) => {
@@ -102,11 +109,17 @@ module.exports = {
     });
   },
 
-  mfa: (event, context, cb) => {
+  setMfa: (event, context, cb) => {
     const body = (typeof event.body === "string") ? JSON.parse(event.body) : event.body ;
-    return CognitoUserPoolWrapper.mfa(body, (err, res) => {
+    return CognitoUserPoolWrapper.setMfa(body, (err, res) => {
       return (err) ? cb(CustomError(err)) : cb(null, Success(res));
     });
   },
 
+  getMfa: (event, context, cb) => {
+    const body = (typeof event.body === "string") ? JSON.parse(event.body) : event.body ;
+    return CognitoUserPoolWrapper.getMfa(body, (err, res) => {
+      return (err) ? cb(CustomError(err)) : cb(null, Success(res));
+    });
+  },
 };
