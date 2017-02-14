@@ -107,7 +107,7 @@ functions:
           integration: lambda
 
   profile-retrieve:
-    handler: handler.profileRetrieve
+    handler: handler.profile
     events:
       - http:
           path: profile
